@@ -1,24 +1,14 @@
 {
-<<<<<<< HEAD
-  "name": "TravelApp",
-  "version": "1.0.0",
-  "description": "",
-=======
   "name": "node-server",
   "version": "1.0.0",
   "description": "travel-app",
->>>>>>> aef4ff656afb45599e5988338029528329db97b4
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "dev": "nodemon"
   },
-<<<<<<< HEAD
-  "author": "Romarie, Soraya, Travis",
-=======
   "author": "Romarie",
->>>>>>> aef4ff656afb45599e5988338029528329db97b4
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.19.4"

@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const { Router } = require('express');
 
-const validateSession = require('../middleware/validate-session');
-const location = require('../db').import('../models/location');
+// const validateSession = require('../middleware/validate-session');
+const Location = require('../db').import('../models/location');
 
 /*******CREATE ******/
-router.post('/create', validateSession, (req, res) => {
+router.post('/create', (req, res) => {
     const createPost = {
-        title: req.body.location.title,
-        date: req.body.location.date,
-        post: req.body.location.entry,
+        name: req.body.location.name,
+        description: req.body.location.description,
         owner: req.user.id
     }
     Location.create(createPost)
@@ -28,7 +28,7 @@ router.get("/", (req, res) => {
 
 /* READ BY USER******/
 
-router.get('/mine', validateSession, (req, res) => {
+router.get('/mine', (req, res) => {
     let userid = req.user.id
     location.findAll({
         where: { owner: userid }
@@ -39,15 +39,37 @@ router.get('/mine', validateSession, (req, res) => {
 
 /* READ BY TITLE******/
 
-router.get('/:title', function (req, res) {
+router.get('/:name', function (req, res) {
     let title = req.params.title;
     location.findAll({
-        where: { title: title }
+        where: { name: name }
     })
     .then(locations => res.status(200).json(locations))
     .catch(err=> res.status(500).json({ error: err}))
 });
 
+// UPDATE BY TITLE
+router.put('/update/:entryId', function(req, res) {
+    const updateLocationPost = {
+        name: req.body.location.name,
+        description: req.body.location.description,
+    };
+
+    const query = { where: {id: req.params.entryId, owner: req.user.id } };
+
+    Location.update(updateLocationPost, query)
+        .then((locations) => res.status(200).json(locations))
+        .catch((err) => res.status(500).json({ error: err }))
+});
 
 
-module.exports = router
+// DELETE LOCATION BY TITLE
+router.delete('/delete/:id', function (req, res) {
+    const query = { where: { id: req.params.id, owner: req.user.id }};
+
+    Location.destroy(query)
+        .then(() => res.status(200).json({ message: 'Location Deleted' }))
+        .cathc((err) => res.status(500).json({ error: err }))
+})
+
+module.exports = router;

@@ -11,11 +11,12 @@ router.post('/create', function(req, res) {
     .then(
         function createSuccess(user) {
             res.json({
-                user: user
+                user: user,
+                message: 'User created'
             });
         }
     )
-    .catch(err => res.status(500).json({erro: err}))
+    .catch(err => res.status(500).json({error: err}))
 });
 
 

@@ -6,8 +6,8 @@ let sequelize = require('./db');
 let user = require('./controllers/usercontroller');
 
 // CONTROLLERS GO HERE
-// let user = require(userController)
-// let location = require(locationController)
+let user = require('./controllers/usercontroller');
+let location = require('./controllers/locationcontroller');
 
 sequelize.sync();
 

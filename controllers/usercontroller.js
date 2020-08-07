@@ -18,10 +18,12 @@ router.post('/create', function(req, res) {
                 user: user,
                 message: 'User successfully created',
                 sessionToken: token
+
+
             });
         }
     )
-    .catch(err => res.status(500).json({erro: err}))
+    .catch(err => res.status(500).json({error: err}))
 });
 
 

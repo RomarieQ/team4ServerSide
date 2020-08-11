@@ -3,7 +3,6 @@ let express = require('express');
 let app = express();
 let sequelize = require('./db');
 
-let user = require('./controllers/usercontroller');
 
 // CONTROLLERS GO HERE
 let user = require('./controllers/usercontroller');
@@ -24,6 +23,6 @@ app.use('/user', user);
 app.use('/location', location);
 app.use(require('./middleware/validate-session'));
 
-app.listen(3000, function(){
-    console.log('Travel App is listening on port 3000 -- pack your bags!');
+app.listen(process.env.PORT, function(){
+    console.log(`Travel App is listening on ${process.env.PORT} -- pack your bags!`);
 })

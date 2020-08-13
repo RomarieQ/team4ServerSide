@@ -21,6 +21,6 @@ app.use('/user', user);
 app.use(require('./middleware/validate-session'));
 app.use('/location', location);
 
-app.listen(3000, function(){
-    console.log('Travel App is listening on port 3000 -- pack your bags!');
+app.listen(process.env.PORT, function(){
+    console.log(`Travel App is listening on ${process.env.PORT} -- pack your bags!`);
 })
